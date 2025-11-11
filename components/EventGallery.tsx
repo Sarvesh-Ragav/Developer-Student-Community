@@ -158,28 +158,78 @@ export default function EventGallery({ images, basePath, maxImagesToScan = 24, e
     return null;
   }
 
-  // Create a staggered masonry layout pattern
+  // Create an organized masonry layout with spatial awareness
   const getImageClass = (index: number, total: number) => {
-    if (total === 1) return "col-span-2 row-span-2";
-    if (total === 2) return "col-span-1 row-span-2";
+    // Single image - full width, larger height
+    if (total === 1) return "col-span-2 md:col-span-3 row-span-3";
+    
+    // Two images - side by side, equal size
+    if (total === 2) {
+      return "col-span-1 md:col-span-1 row-span-2";
+    }
+    
+    // Three images - one large, two smaller
     if (total === 3) {
-      if (index === 0) return "col-span-2 row-span-2";
-      return "col-span-1 row-span-1";
+      if (index === 0) return "col-span-2 md:col-span-2 row-span-3";
+      return "col-span-1 md:col-span-1 row-span-2";
     }
+    
+    // Four images - balanced grid
     if (total === 4) {
-      if (index === 0) return "col-span-2 row-span-2";
-      if (index === 1) return "col-span-1 row-span-1";
-      if (index === 2) return "col-span-1 row-span-1";
-      return "col-span-2 row-span-1";
+      if (index === 0) return "col-span-2 md:col-span-2 row-span-2";
+      if (index === 1) return "col-span-1 md:col-span-1 row-span-1";
+      if (index === 2) return "col-span-1 md:col-span-1 row-span-1";
+      return "col-span-2 md:col-span-2 row-span-1";
     }
-    // For 5+ images, create a dynamic pattern
-    const patternIndex = index % 6;
-    if (patternIndex === 0) return "col-span-2 row-span-2";
-    if (patternIndex === 1) return "col-span-1 row-span-1";
-    if (patternIndex === 2) return "col-span-1 row-span-2";
-    if (patternIndex === 3) return "col-span-1 row-span-1";
-    if (patternIndex === 4) return "col-span-2 row-span-1";
-    return "col-span-1 row-span-1";
+    
+    // Five images - organized pattern
+    if (total === 5) {
+      if (index === 0) return "col-span-2 md:col-span-2 row-span-2";
+      if (index === 1) return "col-span-1 md:col-span-1 row-span-1";
+      if (index === 2) return "col-span-1 md:col-span-1 row-span-1";
+      if (index === 3) return "col-span-1 md:col-span-1 row-span-1";
+      return "col-span-1 md:col-span-1 row-span-1";
+    }
+    
+    // Six images - balanced 3x2 grid
+    if (total === 6) {
+      if (index < 3) return "col-span-1 md:col-span-1 row-span-2";
+      return "col-span-1 md:col-span-1 row-span-2";
+    }
+    
+    // Seven images - organized with featured image
+    if (total === 7) {
+      if (index === 0) return "col-span-2 md:col-span-2 row-span-3";
+      if (index <= 3) return "col-span-1 md:col-span-1 row-span-1";
+      return "col-span-1 md:col-span-1 row-span-2";
+    }
+    
+    // Eight images - balanced grid
+    if (total === 8) {
+      if (index === 0) return "col-span-2 md:col-span-2 row-span-2";
+      if (index <= 3) return "col-span-1 md:col-span-1 row-span-1";
+      return "col-span-1 md:col-span-1 row-span-1";
+    }
+    
+    // Nine images - perfect 3x3 grid
+    if (total === 9) {
+      return "col-span-1 md:col-span-1 row-span-1";
+    }
+    
+    // Ten or more - repeating organized pattern
+    if (total >= 10) {
+      const patternIndex = index % 10;
+      if (patternIndex === 0) return "col-span-2 md:col-span-2 row-span-2";
+      if (patternIndex === 1 || patternIndex === 2) return "col-span-1 md:col-span-1 row-span-1";
+      if (patternIndex === 3) return "col-span-2 md:col-span-2 row-span-1";
+      if (patternIndex === 4 || patternIndex === 5) return "col-span-1 md:col-span-1 row-span-1";
+      if (patternIndex === 6) return "col-span-2 md:col-span-2 row-span-2";
+      if (patternIndex === 7 || patternIndex === 8) return "col-span-1 md:col-span-1 row-span-1";
+      return "col-span-1 md:col-span-1 row-span-1";
+    }
+    
+    // Default fallback
+    return "col-span-1 md:col-span-1 row-span-1";
   };
 
   return (
@@ -195,8 +245,8 @@ export default function EventGallery({ images, basePath, maxImagesToScan = 24, e
           <div className="flex-1 h-px bg-gradient-to-r from-transparent via-purple-500/50 to-transparent"></div>
         </div>
         
-        {/* Masonry Grid with Creative Layout */}
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 auto-rows-[150px] md:auto-rows-[200px]">
+        {/* Organized Masonry Grid with Spatial Awareness */}
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 auto-rows-[120px] md:auto-rows-[180px]">
           {resolvedImages.map((image, index) => (
             <div
               key={index}
