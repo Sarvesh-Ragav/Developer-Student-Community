@@ -128,7 +128,7 @@ export default function EventsList({ events, onEventClick }: EventsListProps) {
             <div
               key={event.id}
               onClick={() => onEventClick(event)}
-              className="cursor-pointer flex flex-col md:flex-row gap-6 md:gap-8 p-6 md:p-8 rounded-2xl backdrop-blur-sm transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl"
+              className="cursor-pointer flex flex-col gap-6 md:gap-8 p-6 md:p-8 rounded-2xl backdrop-blur-sm transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl"
               style={{
                 background: "linear-gradient(135deg, rgba(17, 24, 39, 0.6) 0%, rgba(30, 27, 75, 0.4) 100%)",
                 border: "1px solid rgba(255, 255, 255, 0.1)",
@@ -139,8 +139,8 @@ export default function EventsList({ events, onEventClick }: EventsListProps) {
                 `,
               }}
             >
-              {/* Left Side - Event Details */}
-              <div className="flex-1 flex flex-col justify-center">
+              {/* Event Details - Full Width (No Image Section) */}
+              <div className="w-full flex flex-col justify-center">
                 <div className="flex items-center gap-4 mb-3">
                   <p className="text-sm md:text-base text-white/40 uppercase tracking-wider font-medium">
                     {event.number}
@@ -181,46 +181,6 @@ export default function EventsList({ events, onEventClick }: EventsListProps) {
                 <p className="mt-4 text-sm text-white/50 italic">
                   Click to view details →
                 </p>
-              </div>
-
-              {/* Right Side - Image Box */}
-              <div className="flex-1">
-                <div
-                  className="w-full h-64 md:h-80 rounded-xl overflow-hidden"
-                  style={{
-                    background: "linear-gradient(135deg, rgba(30, 27, 75, 0.5) 0%, rgba(17, 24, 39, 0.5) 100%)",
-                    border: "1px solid rgba(255, 255, 255, 0.1)",
-                  }}
-                >
-                  {event.image ? (
-                    <img
-                      src={withBasePath(event.image)}
-                      alt={event.title}
-                      className="w-full h-full object-cover"
-                    />
-                  ) : (
-                    <div className="w-full h-full flex items-center justify-center">
-                      <div className="text-center">
-                        <div className="w-16 h-16 mx-auto mb-4 rounded-lg bg-gradient-to-br from-purple-500/20 to-violet-500/20 backdrop-blur-sm border border-purple-500/30 flex items-center justify-center">
-                          <svg
-                            className="w-8 h-8 text-purple-400"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-                            />
-                          </svg>
-                        </div>
-                        <p className="text-sm text-white/40">Image Placeholder</p>
-                      </div>
-                    </div>
-                  )}
-                </div>
               </div>
             </div>
                 ))}

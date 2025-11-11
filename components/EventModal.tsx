@@ -114,17 +114,6 @@ export default function EventModal({ event, onClose }: EventModalProps) {
               )}
             </div>
 
-            {/* Event Image */}
-            {event.image && (
-              <div className="mb-8 rounded-xl overflow-hidden">
-                <img
-                  src={withBasePath(event.image)}
-                  alt={event.title}
-                  className="w-full h-auto"
-                />
-              </div>
-            )}
-
             {/* Details */}
             <div className="space-y-6 mb-8">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

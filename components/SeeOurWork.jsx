@@ -2,24 +2,28 @@
 
 import { motion } from "motion/react";
 
+// Event data matching the events page - only show completed/ongoing events
 const events = [
   {
     number: "01",
     title: "Blueprints",
     description: "Our annual hackathon where ideas turn into innovation.",
     tag: "Hackathon",
+    image: "/events/blueprints/1.png",
   },
   {
-    number: "02",
+    number: "04",
     title: "DPREP",
     description: "Aptitude and problem-solving marathon to sharpen logical skills and analytical thinking.",
     tag: "Aptitude",
+    image: "/events/dprep/7.png",
   },
   {
-    number: "03",
+    number: "05",
     title: "Visualizing Web Development",
     description: "Hands-on web development event exploring the latest front-end and AI-integrated technologies.",
     tag: "Web Development",
+    image: "/events/visualizing-web-2025/2.png",
   },
 ];
 
@@ -78,9 +82,9 @@ export default function SeeOurWork() {
                 filter: { duration: 0.7, ease: "easeOut" },
               }}
             >
-              {/* Left Side - Event Details */}
+              {/* Event Details - Full Width (No Image Section) */}
               <motion.div
-                className="flex-1 flex flex-col justify-center"
+                className="w-full flex flex-col justify-center"
                 initial={{ opacity: 0, x: -30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: false }}
@@ -108,48 +112,6 @@ export default function SeeOurWork() {
                 >
                   {event.tag}
                 </span>
-              </motion.div>
-
-              {/* Right Side - Image Box */}
-              <motion.div
-                className="flex-1"
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: false }}
-                transition={{ 
-                  duration: 0.6,
-                  delay: index * 0.15 + 0.2,
-                  ease: [0.25, 0.46, 0.45, 0.94],
-                }}
-              >
-                <div
-                  className="w-full h-64 md:h-80 rounded-xl overflow-hidden"
-                  style={{
-                    background: "linear-gradient(135deg, rgba(30, 27, 75, 0.5) 0%, rgba(17, 24, 39, 0.5) 100%)",
-                    border: "1px solid rgba(255, 255, 255, 0.1)",
-                  }}
-                >
-                  <div className="w-full h-full flex items-center justify-center">
-                    <div className="text-center">
-                      <div className="w-16 h-16 mx-auto mb-4 rounded-lg bg-gradient-to-br from-purple-500/20 to-violet-500/20 backdrop-blur-sm border border-purple-500/30 flex items-center justify-center">
-                        <svg
-                          className="w-8 h-8 text-purple-400"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-                          />
-                        </svg>
-                      </div>
-                      <p className="text-sm text-white/40">Image Placeholder</p>
-                    </div>
-                  </div>
-                </div>
               </motion.div>
             </motion.div>
           ))}
